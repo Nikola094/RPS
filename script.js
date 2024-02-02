@@ -1,5 +1,6 @@
+const choices = ['rock', 'paper', 'scissor'];
+
 function getComputerChoice(){
-    const choices = ['rock', 'paper', 'scissor'];
     const randomIndex = Math.floor(Math.random() * choices.length);
     const randomString = choices[randomIndex];
     console.log("Computer plays " + randomString);
@@ -8,10 +9,13 @@ function getComputerChoice(){
 
 
 function playRound(playerSelection, computerSelection){
-    if (playerSelection === computerSelection){
+
+    const lowerCasePlayerSelection = playerSelection.toLowerCase();
+
+    if (lowerCasePlayerSelection === computerSelection){
         return 'draw';
     }
-    if(playerSelection === 'rock'){
+    if(lowerCasePlayerSelection === 'rock'){
         if (computerSelection === 'paper'){
             return 'First player loss';
         } else if (computerSelection === 'scissor'){
@@ -19,7 +23,7 @@ function playRound(playerSelection, computerSelection){
         }
     }
     
-    if(playerSelection === 'paper'){
+    if(lowerCasePlayerSelection === 'paper'){
         if (computerSelection === 'scissor'){
             return 'First player loss';
         } else if (computerSelection === 'rock'){
@@ -27,13 +31,20 @@ function playRound(playerSelection, computerSelection){
         }
     }
     
-    if(playerSelection === 'scissor'){
+    if(lowerCasePlayerSelection === 'scissor'){
         if (computerSelection === 'rock'){
             return 'First player loss';
         } else if (computerSelection === 'paper'){
             return 'First player wins';
-        }
+        } 
     }
     
 }
 
+function playGame(result){
+    let playerChoice = prompt("enter a valid symbol");
+    let computerResponse = getComputerChoice();
+    playerSelection = playerChoice;
+    result = playRound(playerChoice, computerResponse);
+    return result;
+}
