@@ -3,9 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RPS</title>
+    <title>rps</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="main-buttons">
+        <button onclick="gameLogic('rock')"><img src="photos/rock.png" alt="" height="100px"></button></button>
+        <button onclick="gameLogic('paper')"><img src="photos/paper.png" alt="" height="100px"></button></button>
+        <button onclick="gameLogic('scissors')"><img src="photos/scissors.png" alt="" height="100px"></button></button>
+    </div>
+    <h2>
+       The player picked <span id="playerDisplay">nothing</span>, and the computer picked <span id="computerDisplay">nothing</span>, therefore <span id="resultDisplay">no one</span> won.
+    </h2>
+    <div id="playerScoreDisplay">Player score is: <span id="playerNumberCount">0</span> </div>
+    <div id="computerScoreDisplay">Computer score is: <span id="computerNumberCount">0</span></div>
     <script src="script.js"></script>
 </body>
 </html>

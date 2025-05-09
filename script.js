@@ -1,50 +1,43 @@
-const choices = ['rock', 'paper', 'scissor'];
+const elements = ["rock", "paper", "scissors"];
+const playerDisplay = document.getElementById("playerDisplay");
+const computerDisplay = document.getElementById("computerDisplay");
+const resultDisplay = document.getElementById("resultDisplay");
+const playerNumCount = document.getElementById('playerNumberCount');
+const computerNumCount = document.getElementById('computerNumberCount')
+let playerScore = 0;
+let computerScore = 0;
 
-function getComputerChoice(){
-    const randomIndex = Math.floor(Math.random() * choices.length);
-    const randomString = choices[randomIndex];
-    console.log("Computer plays " + randomString);
-    return randomString;
-}
 
-
-function playRound(playerSelection, computerSelection){
-
-    const lowerCasePlayerSelection = playerSelection.toLowerCase();
-
-    if (lowerCasePlayerSelection === computerSelection){
-        return 'draw';
-    }
-    if(lowerCasePlayerSelection === 'rock'){
-        if (computerSelection === 'paper'){
-            return 'First player loss';
-        } else if (computerSelection === 'scissor'){
-            return 'First player wins';
-        }
-    }
+function gameLogic(playerChoice) {
+    let computerChoice = elements[Math.floor(Math.random() * 3)];
+    let result = "";
     
-    if(lowerCasePlayerSelection === 'paper'){
-        if (computerSelection === 'scissor'){
-            return 'First player loss';
-        } else if (computerSelection === 'rock'){
-            return 'First player wins';
-        }
+    if (playerChoice === computerChoice){
+        result = " no one "
     }
-    
-    if(lowerCasePlayerSelection === 'scissor'){
-        if (computerSelection === 'rock'){
-            return 'First player loss';
-        } else if (computerSelection === 'paper'){
-            return 'First player wins';
-        } 
+    else {
+        switch(playerChoice){
+            case "rock":
+                result = (computerChoice === "scissors") ? "the Player" : " the Computer";
+                break;
+            case "paper":
+                result = (computerChoice === "rock") ? " the Player" : " the Computer";
+                break;
+            case "scissors":
+                result = (computerChoice === "paper") ? " the Player" : " the Computer";
+         }
     }
-    
-}
+    playerDisplay.textContent = `  ${playerChoice}`
+    computerDisplay.textContent =  ` ${computerChoice}`
+    resultDisplay.textContent =  ` ${result}`
 
-function playGame(result){
-    let playerChoice = prompt("enter a valid symbol");
-    let computerResponse = getComputerChoice();
-    playerSelection = playerChoice;
-    result = playRound(playerChoice, computerResponse);
-    return result;
+    switch(result){
+        case "the Player":
+        playerScore++;
+        playerNumCount.textContent = playerScore;
+        break;
+        case " the Computer":
+        computerScore++;
+        computerNumCount.textContent = computerScore;
+    }
 }
